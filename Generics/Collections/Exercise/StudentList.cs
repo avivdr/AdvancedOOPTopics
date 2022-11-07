@@ -13,7 +13,7 @@ namespace Generics.Collections.Exercise
 
         //Targil 1 - write the Property of StudentList called Students
         #region Properties
-        List<Student> Students { get; set; }
+        public List<Student> Students { get; set; }
 
         #endregion
 
@@ -21,7 +21,7 @@ namespace Generics.Collections.Exercise
         #region Constructor
         public StudentList()
         {
-          
+            Students = Student.FillList().ToList();
         }
         #endregion
 
@@ -31,13 +31,18 @@ namespace Generics.Collections.Exercise
         #region Work with  Dictionary
         public Dictionary<string, Student> CreateDictionaryFromStudentList()
         {
-            return null;
+            Dictionary<string, Student> studentsDic = new Dictionary<string, Student>();
+            foreach (var student in Students)
+            {
+                studentsDic.Add(student.Name, student);
+            }
+            return studentsDic;
         }
 
         //Targil 4- write a method which retrieves a Student By name. Use the Dictionary create in Targil 3
         public Student FindStudentByName(string name)
         {
-            return null;
+            return CreateDictionaryFromStudentList()[name];
         }
         #endregion
 
@@ -45,7 +50,15 @@ namespace Generics.Collections.Exercise
         //Targil 5-  write a method which retrieves a list of Students By Kita
         public List<Student> GetStudentsByKits(string kita)
         {
-            return null;
+            var list = new List<Student>();
+            foreach (var student in Students)
+            {
+                 if(student.Kita.ToString() == kita)
+                {
+                    list.Add(student);
+                }
+            }
+            return list;
         }
         #endregion
 
